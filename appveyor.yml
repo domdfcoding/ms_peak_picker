@@ -19,7 +19,12 @@ environment:
 
 install:
   # We need wheel installed to build wheels
-  - "%PYTHON%\\python.exe -m pip install wheel -r requirements.txt"
+  - "%PYTHON%\\python.exe -m pip install pip --upgrade"
+  - "%PYTHON%\\python.exe -m pip install wheel setuptools Cython pytest -r requirements.txt"
+
+test_script:
+  - "%PYTHON%\\python.exe setup.py develop"
+  - "%PYTHON%\\python.exe -m pytest -v -l ms_peak_picker/test/ --junitxml=junit/test-results.xml"
 
 build_script:
   - ".ci\\build.cmd %PYTHON%\\python.exe setup.py bdist_wheel"
