@@ -19,7 +19,7 @@ environment:
 
 install:
   # We need wheel installed to build wheels
-  - "%PYTHON%\\python.exe -m pip install wheel Cython tox tox-appveyor"
+  - "%PYTHON%\\python.exe -m pip install wheel -r requirements.txt"
 
 build_script:
   - ".ci\\build.cmd %PYTHON%\\python.exe setup.py bdist_wheel"
